@@ -7,7 +7,6 @@ const API_TOKEN_INVALID = `The api key of Parsimap is not valid.`
 
 export default function fetchStyle(this: IControl, id: StyleNameType): void {
   const url = new URL(process.env.BASE_API_URL!)
-
   url.pathname = `styles/${id}`
   url.searchParams.append('key', this.options.key!)
 
@@ -24,7 +23,7 @@ export default function fetchStyle(this: IControl, id: StyleNameType): void {
       const urlTemplate = composite.tiles[0]
       const attribution = composite.attribution
 
-      this._tileLayer = L.tileLayer(urlTemplate, { attribution })
+      this._tileLayer = L.tileLayer(urlTemplate, { attribution ,  maxZoom: 22 })
       this._pending?.()
     })
     .catch(handleFetchError)
